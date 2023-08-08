@@ -42,9 +42,9 @@
             if(pChoice === cChoice){
                 console.log("Tie! You both chose " + numToRPS(pChoice));
             }else if(cChoice - 1 === pChoice || cChoice + 2 === pChoice){
-                console.log("You Lose! " + numToRPS(cChoice) + " beats " + numToRPS(pChoice))
+                console.log("You Lose! " + numToRPS(cChoice) + " beats " + numToRPS(pChoice));
             }else {
-                console.log("You Win! " + numToRPS(pChoice) + " beats " + numToRPS(cChoice))
+                console.log("You Win! " + numToRPS(pChoice) + " beats " + numToRPS(cChoice));
             }
             
             if(prompt("Play again? y/n: ") === "y"){
