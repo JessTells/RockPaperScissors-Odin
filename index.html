@@ -6,6 +6,53 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <script>
+        console.log("Hello");
+
+        function getComputerChoice(){
+            let choice = (Math.random() * (2 - 0 + 1) ) << 0
+            console.log("Computer chose: " + numToRPS(choice));
+            return choice;
+        }
+
+        function numToRPS(num){
+            switch(num){
+                case 0: return "Rock";
+                case 1: return "Paper";
+                case 2: return "Scissors";
+            }
+        }
+
+        function getPlayerChoice(){
+            let choice = prompt("Enter Choice: ");
+            choice = choice.toLowerCase();
+            console.log("You chose " + choice);
+            
+            switch(choice){
+                case "rock": return 0;
+                case "paper": return 1;
+                case "scissors": return 2;
+                default: return getPlayerChoice();
+            }
+        }
+
+        function mainRound(){
+            let pChoice = getPlayerChoice();
+            let cChoice = getComputerChoice();
+            if(pChoice === cChoice){
+                console.log("Tie! You both chose " + numToRPS(pChoice));
+            }else if(cChoice - 1 === pChoice || cChoice + 2 === pChoice){
+                console.log("You Lose! " + numToRPS(cChoice) + " beats " + numToRPS(pChoice))
+            }else {
+                console.log("You Win! " + numToRPS(pChoice) + " beats " + numToRPS(cChoice))
+            }
+            
+            if(prompt("Play again? y/n: ") === "y"){
+                mainRound();
+            }
+        }
+
+        mainRound();
+    </script>
 </body>
 </html>
