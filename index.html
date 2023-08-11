@@ -3,15 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <div id="score"></div>
+    <div class="container">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+
+    <div id="cpu-choice"></div>
+    <div id="result"></div>
+
     <script>
-        console.log("Hello");
+        const playBtns = document.querySelectorAll("button");
+        
+        const cpuChoice = document.getElementById("cpu-choice");
+        const result = document.getElementById("result");
+        const score = document.getElementById("score");
+        
+
+        var playerScore = 0;
+        var cpuScore = 0;
+
+        score.textContent = "Player Score: " + playerScore + " | Computer Score: " + cpuScore;
 
         function getComputerChoice(){
             let choice = (Math.random() * (2 - 0 + 1) ) << 0;
             console.log("Computer chose: " + numToRPS(choice));
+            cpuChoice.textContent = "Computer chose: " + numToRPS(choice);
             return choice;
         }
 
@@ -23,36 +44,41 @@
             }
         }
 
-        function getPlayerChoice(){
-            let choice = prompt("Enter Choice: ");
-            choice = choice.toLowerCase();
-            console.log("You chose " + choice);
-            
+        function getPlayerChoice(choice){
             switch(choice){
                 case "rock": return 0;
                 case "paper": return 1;
                 case "scissors": return 2;
-                default: return getPlayerChoice();
+                default: return "ERROR";
             }
         }
 
-        function mainRound(){
-            let pChoice = getPlayerChoice();
+        function mainRound(playerChoice){
+            let pChoice = getPlayerChoice(playerChoice);
             let cChoice = getComputerChoice();
             if(pChoice === cChoice){
                 console.log("Tie! You both chose " + numToRPS(pChoice));
+                result.textContent = "Tie! You both chose " + numToRPS(pChoice);
             }else if(cChoice - 1 === pChoice || cChoice + 2 === pChoice){
                 console.log("You Lose! " + numToRPS(cChoice) + " beats " + numToRPS(pChoice));
+                result.textContent = "You Lose! " + numToRPS(cChoice) + " beats " + numToRPS(pChoice);
+                cpuScore++;
             }else {
                 console.log("You Win! " + numToRPS(pChoice) + " beats " + numToRPS(cChoice));
+                result.textContent = "You Win! " + numToRPS(pChoice) + " beats " + numToRPS(cChoice);
+                playerScore++;
             }
-            
-            if(prompt("Play again? y/n: ") === "y"){
-                mainRound();
-            }
+            score.textContent = "Player Score: " + playerScore + " | Computer Score: " + cpuScore;
         }
 
-        mainRound();
+        playBtns.forEach((button) =>{
+            button.addEventListener('click', () =>{
+                mainRound(button.id);
+            });
+
+        });
+
+        
     </script>
 </body>
 </html>
