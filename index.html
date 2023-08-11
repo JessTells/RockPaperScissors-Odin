@@ -11,6 +11,7 @@
         <button id="rock">Rock</button>
         <button id="paper">Paper</button>
         <button id="scissors">Scissors</button>
+        <button id="reset-button" style="display: none;">Reset</button>
     </div>
 
     <div id="cpu-choice"></div>
@@ -19,6 +20,11 @@
 
     <script>
         const playBtns = document.querySelectorAll("button");
+
+        const button1 = document.getElementById('rock');
+        const button2 = document.getElementById('paper');
+        const button3 = document.getElementById('scissors');
+        const resetButton = document.getElementById('reset-button');
         
         const cpuChoice = document.getElementById("cpu-choice");
         const result = document.getElementById("result");
@@ -72,13 +78,19 @@
 
             }
 
-            score.textContent = "Player Score: " + playerScore + " | Computer Score: " + cpuScore;
+            displayScore();
 
             if(playerScore >= 5){
                 announceWinner.textContent = "You won the game!";
+                hideButtonsAndShowReset();
             }else if(cpuScore >= 5){
                 announceWinner.textContent = "The CPU won the game!";
+                hideButtonsAndShowReset();
             }
+        }
+
+        function displayScore(){
+            score.textContent = "Player Score: " + playerScore + " | Computer Score: " + cpuScore;
         }
 
         playBtns.forEach((button) =>{
@@ -87,6 +99,25 @@
             });
 
         });
+
+        function hideButtonsAndShowReset() {
+            button1.style.display = 'none';
+            button2.style.display = 'none';
+            button3.style.display = 'none';
+            resetButton.style.display = 'inline-block';
+        }
+
+        function resetGameAndHideReset() {
+            button1.style.display = 'inline-block';
+            button2.style.display = 'inline-block';
+            button3.style.display = 'inline-block';
+            resetButton.style.display = 'none';
+            cpuScore = 0;
+            playerScore = 0;
+            displayScore();
+        }
+
+        resetButton.addEventListener('click', resetGameAndHideReset);
 
         
     </script>
