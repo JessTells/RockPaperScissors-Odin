@@ -12,7 +12,6 @@
         <div id="result">First to 5 wins</div>
         <div id="announce-winner">Choose wisely</div>
     </div>
-    <div id="score"></div>
 
     <div class="choices">
         <div class="player">
@@ -25,7 +24,7 @@
             <div class="cpu-score">CPU: <span id="cpu-score">0</span></div>
         </div>
     </div>
-    
+
     <div class="button-container" id="button-container">
         <button id="rock">Rock</button>
         <button id="paper">Paper</button>
@@ -105,11 +104,9 @@
 
             }else {
                 result.textContent = "You Win The Round! " + numToRPS(pChoice) + " beats " + numToRPS(cChoice);
-                playerScore++;
+                updateScore(playerScoreSpan, ++playerScore);
 
             }
-
-            displayScore();
 
             if(playerScore >= 5){
                 announceWinner.textContent = "You won the game!";
@@ -118,10 +115,6 @@
                 announceWinner.textContent = "The CPU won the game!";
                 hideButtonsAndShowReset();
             }
-        }
-
-        function displayScore(){
-            score.textContent = "Player Score: " + playerScore + " | Computer Score: " + cpuScore;
         }
 
         function updateScore(winnerSpan, score){
