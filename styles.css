@@ -2,13 +2,33 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin: 0px;
+    background-color: rgb(72, 73, 102);
     gap: 30px;
 }
 
 .header{
-    align-self: flex-start;
+    background-color: rgb(36, 37, 64);
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background-color: rgb(72, 73, 102);
+    flex: 1;
+}
+
+.footer {
+    padding: 30px;
 }
 
 .button-container {
@@ -26,8 +46,8 @@ body {
 
 .cpu-choice, .player-choice {
     display: flex;
-    height: 100px;
-    width: 115px;
+    height: 130px;
+    width: 130px;
     border: 2px solid black;
     font-size: 32px;
     align-items: center;
@@ -48,4 +68,9 @@ body {
     height: 30px;
     width: 30px;
     border: 2px solid black;
+}
+
+button {
+    height: 130px;
+    width: 130px;
 }
