@@ -1,0 +1,47 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.button-container {
+    display: flex;
+    gap: 30px;
+    
+}
+
+.choices {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cpu-choice, .player-choice {
+    display: flex;
+    height: 100px;
+    width: 115px;
+    border: 2px solid black;
+    font-size: 32px;
+    align-items: center;
+    justify-content: center;
+}
+
+#result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 115px;
+    width: 150px;
+    border: 2px solid black;
+    text-align: center;
+}
+
+#announce-winnder {
+    height: 30px;
+    width: 30px;
+    border: 2px solid black;
+}

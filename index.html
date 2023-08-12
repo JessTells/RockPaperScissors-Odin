@@ -4,43 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="heading">Rock Paper Scissors</div>
+    <div>
+        <div id="result">First to 5 wins</div>
+        <div id="announce-winner">Choose wisely</div>
+    </div>
     <div id="score"></div>
-    <div class="container">
+
+    <div class="choices">
+        <div class="player">
+            <div class="player-choice" id="player-choice"></div>
+            <div class="player-score">Player: <span id="player-score">0</span></div>
+        </div>
+        <div class="vs">VS</div>
+        <div class="cpu">
+            <div class="cpu-choice" id="cpu-choice"></div>
+            <div class="cpu-score">CPU: <span id="cpu-score">0</span></div>
+        </div>
+    </div>
+    
+    <div class="button-container" id="button-container">
         <button id="rock">Rock</button>
         <button id="paper">Paper</button>
         <button id="scissors">Scissors</button>
         <button id="reset-button" style="display: none;">Reset</button>
     </div>
 
-    <div id="cpu-choice"></div>
-    <div id="result"></div>
-    <div id="announce-winner"></div>
+    
+    
+    
+    
 
     <script>
-        const playBtns = document.querySelectorAll("button");
+        const playBtnsDiv = document.getElementById("button-container");
+        const btnArray = Array.from(playBtnsDiv.children);
 
         const button1 = document.getElementById('rock');
         const button2 = document.getElementById('paper');
         const button3 = document.getElementById('scissors');
         const resetButton = document.getElementById('reset-button');
         
+        const playerChoice = document.getElementById("player-choice");
         const cpuChoice = document.getElementById("cpu-choice");
         const result = document.getElementById("result");
-        const score = document.getElementById("score");
+        const playerScoreSpan = document.getElementById("player-score");
+        const cpuScoreSpan = document.getElementById("cpu-score")
         const announceWinner = document.getElementById("announce-winner");
         
 
         var playerScore = 0;
         var cpuScore = 0;
 
-        score.textContent = "Player Score: " + playerScore + " | Computer Score: " + cpuScore;
-
         function getComputerChoice(){
             let choice = (Math.random() * (2 - 0 + 1) ) << 0;
             console.log("Computer chose: " + numToRPS(choice));
-            cpuChoice.textContent = "Computer chose: " + numToRPS(choice);
+            cpuChoice.textContent = numToRPS(choice);
             return choice;
         }
 
@@ -54,9 +75,18 @@
 
         function getPlayerChoice(choice){
             switch(choice){
-                case "rock": return 0;
-                case "paper": return 1;
-                case "scissors": return 2;
+                case "rock": 
+                playerChoice.textContent = "Rock";
+                return 0;
+
+                case "paper":
+                playerChoice.textContent = "Paper"; 
+                return 1;
+
+                case "scissors": 
+                playerChoice.textContent = "Scissors";
+                return 2;
+
                 default: return "ERROR";
             }
         }
@@ -64,13 +94,14 @@
         function mainRound(playerChoice){
             let pChoice = getPlayerChoice(playerChoice);
             let cChoice = getComputerChoice();
+            console.log(playerChoice);
 
             if(pChoice === cChoice){
                 result.textContent = "Tie! You both chose " + numToRPS(pChoice);
 
             }else if(cChoice - 1 === pChoice || cChoice + 2 === pChoice){
                 result.textContent = "You Lose The Round! " + numToRPS(cChoice) + " beats " + numToRPS(pChoice);
-                cpuScore++;
+                updateScore(cpuScoreSpan, ++cpuScore);
 
             }else {
                 result.textContent = "You Win The Round! " + numToRPS(pChoice) + " beats " + numToRPS(cChoice);
@@ -93,9 +124,16 @@
             score.textContent = "Player Score: " + playerScore + " | Computer Score: " + cpuScore;
         }
 
-        playBtns.forEach((button) =>{
+        function updateScore(winnerSpan, score){
+            winnerSpan.textContent = score;
+        }
+
+        btnArray.forEach((button) =>{
             button.addEventListener('click', () =>{
-                mainRound(button.id);
+                if(button.id !== "reset-button"){
+                    mainRound(button.id);
+                }
+                
             });
 
         });
@@ -114,6 +152,9 @@
             resetButton.style.display = 'none';
             cpuScore = 0;
             playerScore = 0;
+            playerChoice.textContent = "";
+            cpuChoice.textContent = "";
+            announceWinner.textContent = "";
             displayScore();
         }
 
