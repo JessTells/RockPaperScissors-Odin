@@ -98,4 +98,7 @@ button {
     height: 150px;
     width: 150px;
     border-radius: 10px;
+    background-color: rgb(97, 107, 143);
+    border: 1px solid black;
 }
+
