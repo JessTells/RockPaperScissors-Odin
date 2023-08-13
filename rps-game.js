@@ -5,10 +5,10 @@ const svgScissors = '<svg xmlns="http://www.w3.org/2000/svg" width="128" height=
 const playBtnsDiv = document.getElementById("button-container");
 const btnArray = Array.from(playBtnsDiv.children);
 
-const button1 = document.getElementById('rock');
-const button2 = document.getElementById('paper');
-const button3 = document.getElementById('scissors');
-const resetButton = document.getElementById('reset-button');
+const btnRock = document.getElementById('rock');
+const btnPaper = document.getElementById('paper');
+const btnScissors = document.getElementById('scissors');
+const btnReset = document.getElementById('reset-button');
 
 const playerChoice = document.getElementById("player-choice");
 const cpuChoice = document.getElementById("cpu-choice");
@@ -23,31 +23,49 @@ var cpuScore = 0;
 
 function getComputerChoice(){
     let choice = (Math.random() * (2 - 0 + 1) ) << 0;
-    console.log("Computer chose: " + numToRPS(choice));
-    cpuChoice.textContent = numToRPS(choice);
+    switch(choice){
+        case 0: 
+        cpuChoice.innerHTML = svgRock;
+        console.log("CPU: " + "Rock");
+        break;
+        case 1: 
+        cpuChoice.innerHTML = svgPaper;
+        console.log("CPU: " + "Paper");
+        break;
+        case 2: 
+        cpuChoice.innerHTML = svgScissors;
+        console.log("CPU: " + "Scissors");
+        break;
+    }
     return choice;
 }
 
 function numToRPS(num){
     switch(num){
-        case 0: return "Rock";
-        case 1: return "Paper";
-        case 2: return "Scissors";
+        case 0: 
+        
+        return "Rock";
+        case 1: 
+        
+        return "Paper";
+        case 2: 
+        
+        return "Scissors";
     }
 }
 
 function getPlayerChoice(choice){
     switch(choice){
         case "rock": 
-        playerChoice.textContent = "Rock";
+        playerChoice.innerHTML = svgRock;
         return 0;
 
         case "paper":
-        playerChoice.textContent = "Paper"; 
+        playerChoice.innerHTML = svgPaper; 
         return 1;
 
         case "scissors": 
-        playerChoice.textContent = "Scissors";
+        playerChoice.innerHTML = svgScissors;
         return 2;
 
         default: return "ERROR";
@@ -57,7 +75,7 @@ function getPlayerChoice(choice){
 function mainRound(playerChoice){
     let pChoice = getPlayerChoice(playerChoice);
     let cChoice = getComputerChoice();
-    console.log(playerChoice);
+    console.log("Player: " + playerChoice);
 
     if(pChoice === cChoice){
         result.textContent = "It is a tie!";
@@ -100,17 +118,17 @@ btnArray.forEach((button) =>{
 });
 
 function hideButtonsAndShowReset() {
-    button1.style.display = 'none';
-    button2.style.display = 'none';
-    button3.style.display = 'none';
-    resetButton.style.display = 'inline-block';
+    btnRock.style.display = 'none';
+    btnPaper.style.display = 'none';
+    btnScissors.style.display = 'none';
+    btnReset.style.display = 'inline-block';
 }
 
 function resetGameAndHideReset() {
-    button1.style.display = 'inline-block';
-    button2.style.display = 'inline-block';
-    button3.style.display = 'inline-block';
-    resetButton.style.display = 'none';
+    btnRock.style.display = 'inline-block';
+    btnPaper.style.display = 'inline-block';
+    btnScissors.style.display = 'inline-block';
+    btnReset.style.display = 'none';
     cpuScore = 0;
     playerScore = 0;
     playerChoice.textContent = "";
@@ -121,4 +139,4 @@ function resetGameAndHideReset() {
     updateScore(playerScoreSpan, playerScore);
 }
 
-resetButton.addEventListener('click', resetGameAndHideReset);
+btnReset.addEventListener('click', resetGameAndHideReset);
