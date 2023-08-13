@@ -56,23 +56,27 @@ function mainRound(playerChoice){
     console.log(playerChoice);
 
     if(pChoice === cChoice){
-        result.textContent = "Tie! You both chose " + numToRPS(pChoice);
+        result.textContent = "It is a tie!";
+        announceWinner.textContent = numToRPS(pChoice) + " ties with " + numToRPS(pChoice);
 
     }else if(cChoice - 1 === pChoice || cChoice + 2 === pChoice){
-        result.textContent = "You Lose The Round! " + numToRPS(cChoice) + " beats " + numToRPS(pChoice);
+        result.textContent = "You lose this round!";
+        announceWinner.textContent = numToRPS(cChoice) + " beats " + numToRPS(pChoice);
         updateScore(cpuScoreSpan, ++cpuScore);
 
     }else {
-        result.textContent = "You Win The Round! " + numToRPS(pChoice) + " beats " + numToRPS(cChoice);
+        result.textContent = "You win the round!";
+        announceWinner.textContent = numToRPS(pChoice) + " beats " + numToRPS(cChoice);
         updateScore(playerScoreSpan, ++playerScore);
-
     }
 
     if(playerScore >= 5){
-        announceWinner.textContent = "You won the game!";
+        result.textContent = "You scored 5 points";
+        announceWinner.textContent = "You win the game!"
         hideButtonsAndShowReset();
     }else if(cpuScore >= 5){
-        announceWinner.textContent = "The CPU won the game!";
+        result.textContent = "The CPU scored 5 points";
+        announceWinner.textContent = "You lost the game!"
         hideButtonsAndShowReset();
     }
 }
@@ -107,8 +111,10 @@ function resetGameAndHideReset() {
     playerScore = 0;
     playerChoice.textContent = "";
     cpuChoice.textContent = "";
-    announceWinner.textContent = "";
-    displayScore();
+    announceWinner.textContent = "An epic game of wits requires wise decisions...";
+    result.textContent = "First to 5 points wins the game!"
+    updateScore(cpuScoreSpan, cpuScore);
+    updateScore(playerScoreSpan, playerScore);
 }
 
 resetButton.addEventListener('click', resetGameAndHideReset);

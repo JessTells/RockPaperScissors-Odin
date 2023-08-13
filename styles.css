@@ -4,7 +4,6 @@ body {
     flex-direction: column;
     margin: 0px;
     background-color: rgb(72, 73, 102);
-    gap: 30px;
 }
 
 .header{
@@ -14,26 +13,53 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 128px;
+    font-size: 36px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 32px;
 }
 
 .game-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 30px;
     background-color: rgb(72, 73, 102);
     flex: 1;
+    padding: 20px;
+    gap: 16px;
+    margin-bottom: 60px;
 }
 
 .footer {
     padding: 30px;
 }
 
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.score {
+    margin-top: 16px;
+    font-size: 28px;
+    color: white;
+}
+
 .button-container {
     display: flex;
     gap: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     
 }
 
@@ -58,19 +84,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 115px;
-    width: 150px;
-    border: 2px solid black;
+    font-size: 32px;
     text-align: center;
+    color: white;
 }
 
-#announce-winnder {
-    height: 30px;
-    width: 30px;
-    border: 2px solid black;
+#announce-winner {
+    font-size: 24px;
+    color: white;
 }
 
 button {
-    height: 130px;
-    width: 130px;
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
 }
